@@ -1,5 +1,6 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.endpoints;
 
+import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.CreateHotelRequest;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.CreateHotelResponse;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.GetHotelDetailsRequest;
@@ -26,8 +27,7 @@ public class ChoiceHotelsEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createHotelRequest")
     @ResponsePayload
     public CreateHotelResponse createHotel(@RequestPayload CreateHotelRequest request){
-        System.out.println("request params:"+request);
-        //hotelRepository.save(new Hotel(request.getHotelId(), request.getName(), request.getRating()));
+        hotelRepository.save(new Hotel(request.getHotelId(), request.getName(), request.getRating()));
         CreateHotelResponse response = new CreateHotelResponse();
         response.setHotelId(request.getHotelId());
         return response;
@@ -36,9 +36,8 @@ public class ChoiceHotelsEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelDetailsRequest")
     @ResponsePayload
     public GetHotelDetailsResponse createHotel(@RequestPayload GetHotelDetailsRequest request){
-        System.out.println("request params:"+request.getHotelId());
         GetHotelDetailsResponse response = new GetHotelDetailsResponse();
-        response.setHotelId(request.getHotelId());
+
         return response;
     }
 }
