@@ -33,8 +33,8 @@ import javax.xml.bind.annotation.*;
     "rating",
     "address"
 })
-@XmlRootElement(name = "createHotelRequest", namespace = "http://localhost:8080/hotels")
-public class CreateHotelRequest {
+@XmlRootElement(name = "getHotelDetailsResponse", namespace = "http://localhost:8080/hotels")
+public class GetHotelDetailsResponse {
 
     @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
     protected String hotelId;

@@ -27,8 +27,8 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "", propOrder = {
     "hotelId"
 })
-@XmlRootElement(name = "createHotelResponse", namespace = "http://localhost:8080/hotels")
-public class CreateHotelResponse {
+@XmlRootElement(name = "getHotelDetailsRequest", namespace = "http://localhost:8080/hotels")
+public class GetHotelDetailsRequest {
 
     @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
     protected String hotelId;

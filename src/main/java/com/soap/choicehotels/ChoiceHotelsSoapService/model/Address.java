@@ -13,24 +13,24 @@ import javax.xml.bind.annotation.XmlType;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="address">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="state" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="postalCode" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="addressLines" type="{choiceHotels}addressLines"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="address"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="state" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="postalCode" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="addressLines" type="{http://localhost:8080/hotels}addressLines"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "address", namespace = "choiceHotels", propOrder = {
+@XmlType(name = "address", namespace = "http://localhost:8080/hotels", propOrder = {
     "city",
     "state",
     "postalCode",
@@ -38,13 +38,13 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Address {
 
-    @XmlElement(namespace = "choiceHotels", required = true)
+    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
     protected String city;
-    @XmlElement(namespace = "choiceHotels", required = true)
+    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
     protected String state;
-    @XmlElement(namespace = "choiceHotels", required = true)
+    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
     protected String postalCode;
-    @XmlElement(namespace = "choiceHotels", required = true)
+    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
     protected AddressLines addressLines;
 
     /**

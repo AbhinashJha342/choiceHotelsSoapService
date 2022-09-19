@@ -1,10 +1,10 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.repository;
 
+import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface HotelRepository extends CrudRepository {
+
+public interface HotelRepository extends CrudRepository<Hotel, Long> {
 
 
 }

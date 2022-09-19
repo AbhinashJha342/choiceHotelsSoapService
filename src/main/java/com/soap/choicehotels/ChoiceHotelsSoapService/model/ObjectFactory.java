@@ -30,14 +30,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreateHotelResponse }
-     * 
-     */
-    public CreateHotelResponse createCreateHotelResponse() {
-        return new CreateHotelResponse();
-    }
-
-    /**
      * Create an instance of {@link CreateHotelRequest }
      * 
      */
@@ -51,6 +43,30 @@ public class ObjectFactory {
      */
     public Address createAddress() {
         return new Address();
+    }
+
+    /**
+     * Create an instance of {@link CreateHotelResponse }
+     * 
+     */
+    public CreateHotelResponse createCreateHotelResponse() {
+        return new CreateHotelResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetHotelDetailsRequest }
+     * 
+     */
+    public GetHotelDetailsRequest createGetHotelDetailsRequest() {
+        return new GetHotelDetailsRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetHotelDetailsResponse }
+     * 
+     */
+    public GetHotelDetailsResponse createGetHotelDetailsResponse() {
+        return new GetHotelDetailsResponse();
     }
 
     /**

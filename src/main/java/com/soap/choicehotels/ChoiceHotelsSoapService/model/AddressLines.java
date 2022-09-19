@@ -13,30 +13,30 @@ import javax.xml.bind.annotation.XmlType;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="addressLines">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="exterior" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="street" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="addressLines"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="exterior" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="street" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "addressLines", namespace = "choiceHotels", propOrder = {
+@XmlType(name = "addressLines", namespace = "http://localhost:8080/hotels", propOrder = {
     "exterior",
     "street"
 })
 public class AddressLines {
 
-    @XmlElement(namespace = "choiceHotels", required = true)
+    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
     protected String exterior;
-    @XmlElement(namespace = "choiceHotels", required = true)
+    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
     protected String street;
 
     /**

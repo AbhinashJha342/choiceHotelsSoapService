@@ -2,15 +2,19 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.endpoints;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.CreateHotelRequest;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.CreateHotelResponse;
+import com.soap.choicehotels.ChoiceHotelsSoapService.model.GetHotelDetailsRequest;
+import com.soap.choicehotels.ChoiceHotelsSoapService.model.GetHotelDetailsResponse;
 import com.soap.choicehotels.ChoiceHotelsSoapService.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.websocket.server.ServerEndpoint;
-
-@ServerEndpoint(value = "/hotels")
+@Endpoint
 public class ChoiceHotelsEndpoint {
+
+    private static final String NAMESPACE_URI = "http://localhost:8080/hotels";
 
     private HotelRepository hotelRepository;
 
@@ -19,10 +23,22 @@ public class ChoiceHotelsEndpoint {
         this.hotelRepository = hotelRepository;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createHotelRequest")
     @ResponsePayload
     public CreateHotelResponse createHotel(@RequestPayload CreateHotelRequest request){
-        hotelRepository.save(request);
+        System.out.println("request params:"+request);
+        //hotelRepository.save(new Hotel(request.getHotelId(), request.getName(), request.getRating()));
+        CreateHotelResponse response = new CreateHotelResponse();
+        response.setHotelId(request.getHotelId());
+        return response;
+    }
 
-        return null;
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelDetailsRequest")
+    @ResponsePayload
+    public GetHotelDetailsResponse createHotel(@RequestPayload GetHotelDetailsRequest request){
+        System.out.println("request params:"+request.getHotelId());
+        GetHotelDetailsResponse response = new GetHotelDetailsResponse();
+        response.setHotelId(request.getHotelId());
+        return response;
     }
 }
