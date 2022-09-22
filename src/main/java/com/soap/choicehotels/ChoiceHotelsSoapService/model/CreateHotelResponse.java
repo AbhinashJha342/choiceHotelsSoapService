@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "", propOrder = {
     "hotelId"
 })
-@XmlRootElement(name = "createHotelResponse", namespace = "http://localhost:8080/hotels")
+@XmlRootElement(name = "createHotelResponse", namespace = "http://localhost:8088/hotels")
 public class CreateHotelResponse {
 
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String hotelId;
 
     /**

@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.*;
  *         &lt;element name="hotelId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="address" type="{http://localhost:8080/hotels}address"/&gt;
+ *         &lt;element name="address" type="{http://localhost:8088/hotels}address"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -33,16 +33,16 @@ import javax.xml.bind.annotation.*;
     "rating",
     "address"
 })
-@XmlRootElement(name = "getHotelDetailsResponse", namespace = "http://localhost:8080/hotels")
+@XmlRootElement(name = "getHotelDetailsResponse", namespace = "http://localhost:8088/hotels")
 public class GetHotelDetailsResponse {
 
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String hotelId;
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String name;
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String rating;
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected Address address;
 
     /**
