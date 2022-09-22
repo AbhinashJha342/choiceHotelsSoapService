@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for addressLinesDto complex type.
+ * <p>Java class for addressLines complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="addressLinesDto"&gt;
+ * &lt;complexType name="addressLines"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
@@ -28,11 +28,11 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "addressLinesDto", namespace = "http://localhost:8088/hotels", propOrder = {
+@XmlType(name = "addressLines", namespace = "http://localhost:8088/hotels", propOrder = {
     "exterior",
     "street"
 })
-public class AddressLinesDto {
+public class AddressLines {
 
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String exterior;
@@ -87,4 +87,11 @@ public class AddressLinesDto {
         this.street = value;
     }
 
+
+    public static com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines to(AddressLines addressLines){
+        if(addressLines == null)
+            return null;
+
+        return new com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines(addressLines.getExterior(), addressLines.getStreet());
+    }
 }

@@ -1,5 +1,6 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.endpoints;
 
+import com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.repository.HotelRepository;
@@ -23,21 +24,20 @@ public class ChoiceHotelsEndpoint {
         this.hotelRepository = hotelRepository;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createHotelRequestDto")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createHotelRequest")
     @ResponsePayload
-    public CreateHotelResponseDto createHotel(@RequestPayload CreateHotelRequestDto request){
+    public CreateHotelResponse createHotel(@RequestPayload CreateHotelRequest request){
         UUID hotelId = UUID.randomUUID();
-        Hotel hotel = hotelRepository.save(new Hotel(hotelId.toString(), request.getName(), request.getRating(), false));
-        CreateHotelResponseDto response = new CreateHotelResponseDto();
+        Hotel hotel = hotelRepository.save(new Hotel(hotelId.toString(), request.getName(), request.getRating(), Address.to(request.getAddress()), false));
+        CreateHotelResponse response = new CreateHotelResponse();
         response.setHotelId(hotel.getHotelId());
         return response;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelDetailsRequestDto")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelDetailsRequest")
     @ResponsePayload
-    public GetHotelDetailsResponseDto createHotel(@RequestPayload GetHotelDetailsRequestDto request){
-        GetHotelDetailsResponseDto response = new GetHotelDetailsResponseDto();
-        Hotel hotel = hotelRepository.getHotelByHotelId(request.getHotelId());
-        return response;
+    public GetHotelDetailsResponse createHotel(@RequestPayload GetHotelDetailsRequest request){
+        GetHotelDetailsResponse response = new GetHotelDetailsResponse();
+        return Hotel.from(hotelRepository.getHotelByHotelId(request.getHotelId()));
     }
 }

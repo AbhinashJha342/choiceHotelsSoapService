@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.*;
  *       &lt;sequence&gt;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="address" type="{http://localhost:8088/hotels}addressDto"/&gt;
+ *         &lt;element name="address" type="{http://localhost:8088/hotels}address"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -31,15 +31,15 @@ import javax.xml.bind.annotation.*;
     "rating",
     "address"
 })
-@XmlRootElement(name = "createHotelRequestDto", namespace = "http://localhost:8088/hotels")
-public class CreateHotelRequestDto {
+@XmlRootElement(name = "createHotelRequest", namespace = "http://localhost:8088/hotels")
+public class CreateHotelRequest {
 
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String name;
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String rating;
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
-    protected AddressDto address;
+    protected Address address;
 
     /**
      * Gets the value of the name property.
@@ -94,10 +94,10 @@ public class CreateHotelRequestDto {
      * 
      * @return
      *     possible object is
-     *     {@link AddressDto }
+     *     {@link Address }
      *     
      */
-    public AddressDto getAddress() {
+    public Address getAddress() {
         return address;
     }
 
@@ -106,10 +106,10 @@ public class CreateHotelRequestDto {
      * 
      * @param value
      *     allowed object is
-     *     {@link AddressDto }
+     *     {@link Address }
      *     
      */
-    public void setAddress(AddressDto value) {
+    public void setAddress(Address value) {
         this.address = value;
     }
 

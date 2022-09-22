@@ -1,5 +1,7 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.domain;
 
+import com.soap.choicehotels.ChoiceHotelsSoapService.model.GetHotelDetailsResponse;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,9 +17,12 @@ public class Hotel {
 
     private String rating;
 
-    public boolean isDeleted;
+    private boolean isDeleted;
 
-    public Hotel(Long id, String hotelId, String name, String rating, boolean isDeleted) {
+    @OneToOne(cascade = {CascadeType.PERSIST}, mappedBy = "hotel", orphanRemoval = true)
+    private Address address;
+
+    public Hotel(Long id, String hotelId, String name, String rating, Address address,  boolean isDeleted) {
         this.id = id;
         this.hotelId = hotelId;
         this.name = name;
@@ -25,7 +30,7 @@ public class Hotel {
         this.isDeleted = isDeleted;
     }
 
-    public Hotel(String hotelId, String name, String rating, boolean isDeleted) {
+    public Hotel(String hotelId, String name, String rating, Address address,  boolean isDeleted) {
         this.hotelId = hotelId;
         this.name = name;
         this.rating = rating;
@@ -67,5 +72,20 @@ public class Hotel {
         this.rating = rating;
     }
 
+    public boolean isDeleted() {
+        return isDeleted;
+    }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public static GetHotelDetailsResponse from (Hotel hotel){
+        GetHotelDetailsResponse response = new GetHotelDetailsResponse();
+        response.setHotelId(hotel.getHotelId());
+        response.setName(hotel.getName());
+        response.setRating(hotel.getRating());
+        response.setAddress(Address.from(hotel.getAddress()));
+        return response;
+    }
 }
