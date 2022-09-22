@@ -28,15 +28,15 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "addressLines", namespace = "http://localhost:8080/hotels", propOrder = {
+@XmlType(name = "addressLines", namespace = "http://localhost:8088/hotels", propOrder = {
     "exterior",
     "street"
 })
 public class AddressLines {
 
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String exterior;
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String street;
 
     /**

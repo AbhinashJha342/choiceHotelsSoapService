@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="state" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="postalCode" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="addressLines" type="{http://localhost:8080/hotels}addressLines"/&gt;
+ *         &lt;element name="addressLines" type="{http://localhost:8088/hotels}addressLines"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "address", namespace = "http://localhost:8080/hotels", propOrder = {
+@XmlType(name = "address", namespace = "http://localhost:8088/hotels", propOrder = {
     "city",
     "state",
     "postalCode",
@@ -38,13 +38,13 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Address {
 
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String city;
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String state;
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String postalCode;
-    @XmlElement(namespace = "http://localhost:8080/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected AddressLines addressLines;
 
     /**

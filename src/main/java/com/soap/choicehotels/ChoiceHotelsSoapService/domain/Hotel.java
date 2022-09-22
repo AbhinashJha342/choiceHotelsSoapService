@@ -1,9 +1,6 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Hotel {
@@ -17,6 +14,7 @@ public class Hotel {
     private String name;
 
     private String rating;
+
 
     public Hotel(Long id, String hotelId, String name, String rating) {
         this.id = id;

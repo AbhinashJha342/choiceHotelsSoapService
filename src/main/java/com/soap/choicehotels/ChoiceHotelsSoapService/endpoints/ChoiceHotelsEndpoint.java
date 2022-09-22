@@ -15,7 +15,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class ChoiceHotelsEndpoint {
 
-    private static final String NAMESPACE_URI = "http://localhost:8080/hotels";
+    private static final String NAMESPACE_URI = "http://localhost:8088/hotels";
 
     private HotelRepository hotelRepository;
 
