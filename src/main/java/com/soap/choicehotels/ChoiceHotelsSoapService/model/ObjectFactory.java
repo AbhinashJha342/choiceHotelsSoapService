@@ -30,51 +30,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreateHotelRequestDto }
+     * Create an instance of {@link CreateHotelRequest }
      * 
      */
-    public CreateHotelRequestDto createCreateHotelRequestDto() {
-        return new CreateHotelRequestDto();
+    public CreateHotelRequest createCreateHotelRequest() {
+        return new CreateHotelRequest();
     }
 
     /**
-     * Create an instance of {@link AddressDto }
+     * Create an instance of {@link Address }
      * 
      */
-    public AddressDto createAddressDto() {
-        return new AddressDto();
+    public Address createAddress() {
+        return new Address();
     }
 
     /**
-     * Create an instance of {@link CreateHotelResponseDto }
+     * Create an instance of {@link CreateHotelResponse }
      * 
      */
-    public CreateHotelResponseDto createCreateHotelResponseDto() {
-        return new CreateHotelResponseDto();
+    public CreateHotelResponse createCreateHotelResponse() {
+        return new CreateHotelResponse();
     }
 
     /**
-     * Create an instance of {@link GetHotelDetailsRequestDto }
+     * Create an instance of {@link GetHotelDetailsRequest }
      * 
      */
-    public GetHotelDetailsRequestDto createGetHotelDetailsRequestDto() {
-        return new GetHotelDetailsRequestDto();
+    public GetHotelDetailsRequest createGetHotelDetailsRequest() {
+        return new GetHotelDetailsRequest();
     }
 
     /**
-     * Create an instance of {@link GetHotelDetailsResponseDto }
+     * Create an instance of {@link GetHotelDetailsResponse }
      * 
      */
-    public GetHotelDetailsResponseDto createGetHotelDetailsResponseDto() {
-        return new GetHotelDetailsResponseDto();
+    public GetHotelDetailsResponse createGetHotelDetailsResponse() {
+        return new GetHotelDetailsResponse();
     }
 
     /**
-     * Create an instance of {@link AddressLinesDto }
+     * Create an instance of {@link AddressLines }
      * 
      */
-    public AddressLinesDto createAddressLinesDto() {
-        return new AddressLinesDto();
+    public AddressLines createAddressLines() {
+        return new AddressLines();
     }
 
 }
