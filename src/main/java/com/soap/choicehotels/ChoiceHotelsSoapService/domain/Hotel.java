@@ -15,18 +15,21 @@ public class Hotel {
 
     private String rating;
 
+    public boolean isDeleted;
 
-    public Hotel(Long id, String hotelId, String name, String rating) {
+    public Hotel(Long id, String hotelId, String name, String rating, boolean isDeleted) {
         this.id = id;
         this.hotelId = hotelId;
         this.name = name;
         this.rating = rating;
+        this.isDeleted = isDeleted;
     }
 
-    public Hotel(String hotelId, String name, String rating) {
+    public Hotel(String hotelId, String name, String rating, boolean isDeleted) {
         this.hotelId = hotelId;
         this.name = name;
         this.rating = rating;
+        this.isDeleted = isDeleted;
     }
 
     public Hotel() {
@@ -63,4 +66,6 @@ public class Hotel {
     public void setRating(String rating) {
         this.rating = rating;
     }
+
+
 }

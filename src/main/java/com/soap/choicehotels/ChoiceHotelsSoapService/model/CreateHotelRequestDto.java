@@ -14,10 +14,9 @@ import javax.xml.bind.annotation.*;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="hotelId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="address" type="{http://localhost:8088/hotels}address"/&gt;
+ *         &lt;element name="address" type="{http://localhost:8088/hotels}addressDto"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -28,46 +27,19 @@ import javax.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "hotelId",
     "name",
     "rating",
     "address"
 })
-@XmlRootElement(name = "createHotelRequest", namespace = "http://localhost:8088/hotels")
-public class CreateHotelRequest {
+@XmlRootElement(name = "createHotelRequestDto", namespace = "http://localhost:8088/hotels")
+public class CreateHotelRequestDto {
 
-    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
-    protected String hotelId;
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String name;
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String rating;
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
-    protected Address address;
-
-    /**
-     * Gets the value of the hotelId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getHotelId() {
-        return hotelId;
-    }
-
-    /**
-     * Sets the value of the hotelId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setHotelId(String value) {
-        this.hotelId = value;
-    }
+    protected AddressDto address;
 
     /**
      * Gets the value of the name property.
@@ -122,10 +94,10 @@ public class CreateHotelRequest {
      * 
      * @return
      *     possible object is
-     *     {@link Address }
+     *     {@link AddressDto }
      *     
      */
-    public Address getAddress() {
+    public AddressDto getAddress() {
         return address;
     }
 
@@ -134,10 +106,10 @@ public class CreateHotelRequest {
      * 
      * @param value
      *     allowed object is
-     *     {@link Address }
+     *     {@link AddressDto }
      *     
      */
-    public void setAddress(Address value) {
+    public void setAddress(AddressDto value) {
         this.address = value;
     }
 
