@@ -1,6 +1,5 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.endpoints;
 
-import com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.repository.HotelRepository;
@@ -19,6 +18,7 @@ public class ChoiceHotelsEndpoint {
 
     private HotelRepository hotelRepository;
 
+    //TODO check for @Autowire
     @Autowired
     public ChoiceHotelsEndpoint(HotelRepository hotelRepository){
         this.hotelRepository = hotelRepository;

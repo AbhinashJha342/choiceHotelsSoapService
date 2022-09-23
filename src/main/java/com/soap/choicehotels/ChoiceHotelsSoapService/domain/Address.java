@@ -1,15 +1,12 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.domain;
 
-
-
-
 import javax.persistence.*;
 
 @Entity
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String city;
@@ -20,10 +17,6 @@ public class Address {
 
     @Embedded
     private AddressLines addressLines;
-
-    @OneToOne
-    @JoinColumn(name="hotelId")
-    private Hotel hotel;
 
     public Address(Long id, String city, String state, String postalCode, AddressLines addressLines) {
         this.id = id;
@@ -40,14 +33,13 @@ public class Address {
         this.addressLines = addressLines;
     }
 
-    public Address() {
+    protected Address() {
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
     }
@@ -82,14 +74,6 @@ public class Address {
 
     public void setAddressLines(AddressLines addressLines) {
         this.addressLines = addressLines;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
     }
 
     public static com.soap.choicehotels.ChoiceHotelsSoapService.model.Address from(Address address){

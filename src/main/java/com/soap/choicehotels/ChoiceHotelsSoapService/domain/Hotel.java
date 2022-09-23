@@ -19,7 +19,8 @@ public class Hotel {
 
     private boolean isDeleted;
 
-    @OneToOne(cascade = {CascadeType.PERSIST}, mappedBy = "hotel", orphanRemoval = true)
+    @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
+    //@JoinColumn(name = "address_id")
     private Address address;
 
     public Hotel(Long id, String hotelId, String name, String rating, Address address,  boolean isDeleted) {
@@ -28,6 +29,7 @@ public class Hotel {
         this.name = name;
         this.rating = rating;
         this.isDeleted = isDeleted;
+        this.address = address;
     }
 
     public Hotel(String hotelId, String name, String rating, Address address,  boolean isDeleted) {
@@ -35,9 +37,10 @@ public class Hotel {
         this.name = name;
         this.rating = rating;
         this.isDeleted = isDeleted;
+        this.address = address;
     }
 
-    public Hotel() {
+    protected Hotel() {
     }
 
     public void setId(Long id) {
@@ -80,6 +83,14 @@ public class Hotel {
         return address;
     }
 
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public static GetHotelDetailsResponse from (Hotel hotel){
         GetHotelDetailsResponse response = new GetHotelDetailsResponse();
         response.setHotelId(hotel.getHotelId());
@@ -88,4 +99,6 @@ public class Hotel {
         response.setAddress(Address.from(hotel.getAddress()));
         return response;
     }
+
+    //generate equals and hashcode
 }

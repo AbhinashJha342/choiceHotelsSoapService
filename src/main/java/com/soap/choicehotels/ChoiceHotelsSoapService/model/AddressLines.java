@@ -87,11 +87,11 @@ public class AddressLines {
         this.street = value;
     }
 
-
     public static com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines to(AddressLines addressLines){
         if(addressLines == null)
             return null;
 
         return new com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines(addressLines.getExterior(), addressLines.getStreet());
     }
+
 }

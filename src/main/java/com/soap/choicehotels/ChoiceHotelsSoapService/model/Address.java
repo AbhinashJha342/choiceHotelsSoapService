@@ -151,4 +151,5 @@ public class Address {
                 address.getCity(), address.getState(), address.postalCode, AddressLines.to(address.getAddressLines())
         );
     }
+
 }
