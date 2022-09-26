@@ -14,9 +14,15 @@ import javax.xml.bind.annotation.*;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="address" type="{http://localhost:8088/hotels}address"/&gt;
+ *         &lt;element name="name"&gt;
+ *           &lt;simpleType&gt;
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+ *               &lt;minLength value="1"/&gt;
+ *             &lt;/restriction&gt;
+ *           &lt;/simpleType&gt;
+ *         &lt;/element&gt;
+ *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="address" type="{http://localhost:8088/hotels}addressDto"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,10 +42,10 @@ public class CreateHotelRequest {
 
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String name;
-    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
+    @XmlElement(namespace = "http://localhost:8088/hotels")
     protected String rating;
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
-    protected Address address;
+    protected AddressDto address;
 
     /**
      * Gets the value of the name property.
@@ -94,10 +100,10 @@ public class CreateHotelRequest {
      * 
      * @return
      *     possible object is
-     *     {@link Address }
+     *     {@link AddressDto }
      *     
      */
-    public Address getAddress() {
+    public AddressDto getAddress() {
         return address;
     }
 
@@ -106,10 +112,10 @@ public class CreateHotelRequest {
      * 
      * @param value
      *     allowed object is
-     *     {@link Address }
+     *     {@link AddressDto }
      *     
      */
-    public void setAddress(Address value) {
+    public void setAddress(AddressDto value) {
         this.address = value;
     }
 
