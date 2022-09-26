@@ -70,6 +70,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreateHotelAmenities }
+     * 
+     */
+    public CreateHotelAmenities createCreateHotelAmenities() {
+        return new CreateHotelAmenities();
+    }
+
+    /**
      * Create an instance of {@link AddressLinesDto }
      * 
      */

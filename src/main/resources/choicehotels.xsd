@@ -5,14 +5,7 @@
     <xs:element name="createHotelRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:minLength value="1"/>
-                            <xs:pattern value="[a-zA-Z0-9]*"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
+                <xs:element name="name" type="tns:nonEmptyString"/>
                 <xs:element name="rating" type="xs:string" minOccurs="0"/>
                 <xs:element name="address" type="tns:addressDto"/>
             </xs:sequence>
@@ -49,6 +42,14 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="createHotelAmenities">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="amenities" type="tns:amenitiesList" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="addressDto">
         <xs:sequence>
             <xs:element name="city" type="xs:string"/>
@@ -65,4 +66,13 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:simpleType name="amenitiesList">
+        <xs:list itemType="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="nonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
