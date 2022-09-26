@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.*;
  *         &lt;element name="hotelId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="address" type="{http://localhost:8088/hotels}address"/&gt;
+ *         &lt;element name="address" type="{http://localhost:8088/hotels}addressDto"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -43,7 +43,7 @@ public class GetHotelDetailsResponse {
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String rating;
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
-    protected Address address;
+    protected AddressDto address;
 
     /**
      * Gets the value of the hotelId property.
@@ -122,10 +122,10 @@ public class GetHotelDetailsResponse {
      * 
      * @return
      *     possible object is
-     *     {@link Address }
+     *     {@link AddressDto }
      *     
      */
-    public Address getAddress() {
+    public AddressDto getAddress() {
         return address;
     }
 
@@ -134,10 +134,10 @@ public class GetHotelDetailsResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link Address }
+     *     {@link AddressDto }
      *     
      */
-    public void setAddress(Address value) {
+    public void setAddress(AddressDto value) {
         this.address = value;
     }
 

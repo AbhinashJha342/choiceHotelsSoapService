@@ -34,10 +34,4 @@ public class AddressLines {
         this.street = street;
     }
 
-    public static com.soap.choicehotels.ChoiceHotelsSoapService.model.AddressLines from(AddressLines addressLines){
-        com.soap.choicehotels.ChoiceHotelsSoapService.model.AddressLines addressLinesModel = new com.soap.choicehotels.ChoiceHotelsSoapService.model.AddressLines();
-        addressLinesModel.setExterior(addressLines.getExterior());
-        addressLinesModel.setStreet(addressLines.getStreet());
-        return addressLinesModel;
-    }
 }

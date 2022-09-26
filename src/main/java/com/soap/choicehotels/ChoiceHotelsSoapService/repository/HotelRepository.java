@@ -1,11 +1,9 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.repository;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-
-//change to JpaRepository
-public interface HotelRepository extends CrudRepository<Hotel, Long> {
+public interface HotelRepository extends JpaRepository<Hotel, Long> {
 
     Hotel getHotelByHotelId(String hotelId);
 

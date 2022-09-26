@@ -1,8 +1,7 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.domain;
 
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.GetHotelDetailsResponse;
-
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Hotel {
@@ -91,13 +90,17 @@ public class Hotel {
         this.address = address;
     }
 
-    public static GetHotelDetailsResponse from (Hotel hotel){
-        GetHotelDetailsResponse response = new GetHotelDetailsResponse();
-        response.setHotelId(hotel.getHotelId());
-        response.setName(hotel.getName());
-        response.setRating(hotel.getRating());
-        response.setAddress(Address.from(hotel.getAddress()));
-        return response;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hotel hotel = (Hotel) o;
+        return isDeleted == hotel.isDeleted && Objects.equals(id, hotel.id) && Objects.equals(hotelId, hotel.hotelId) && Objects.equals(name, hotel.name) && Objects.equals(rating, hotel.rating) && Objects.equals(address, hotel.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, hotelId, name, rating, isDeleted, address);
     }
 
     //generate equals and hashcode

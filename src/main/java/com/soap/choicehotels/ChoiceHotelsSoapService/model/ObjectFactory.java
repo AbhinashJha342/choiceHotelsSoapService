@@ -38,11 +38,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Address }
+     * Create an instance of {@link AddressDto }
      * 
      */
-    public Address createAddress() {
-        return new Address();
+    public AddressDto createAddressDto() {
+        return new AddressDto();
     }
 
     /**
@@ -70,11 +70,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddressLines }
+     * Create an instance of {@link AddressLinesDto }
      * 
      */
-    public AddressLines createAddressLines() {
-        return new AddressLines();
+    public AddressLinesDto createAddressLinesDto() {
+        return new AddressLinesDto();
     }
 
 }

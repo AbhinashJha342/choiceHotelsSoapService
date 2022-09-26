@@ -76,12 +76,4 @@ public class Address {
         this.addressLines = addressLines;
     }
 
-    public static com.soap.choicehotels.ChoiceHotelsSoapService.model.Address from(Address address){
-        com.soap.choicehotels.ChoiceHotelsSoapService.model.Address addressModel =  new com.soap.choicehotels.ChoiceHotelsSoapService.model.Address();
-        addressModel.setCity(address.getCity());
-        addressModel.setState(address.getState());
-        addressModel.setPostalCode(address.getPostalCode());
-        addressModel.setAddressLines(AddressLines.from(address.getAddressLines()));
-        return addressModel;
-    }
 }

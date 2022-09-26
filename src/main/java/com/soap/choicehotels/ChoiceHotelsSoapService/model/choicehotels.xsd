@@ -5,9 +5,15 @@
     <xs:element name="createHotelRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string"/>
-                <xs:element name="rating" type="xs:string"/>
-                <xs:element name="address" type="tns:address"/>
+                <xs:element name="name">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="rating" type="xs:string" minOccurs="0"/>
+                <xs:element name="address" type="tns:addressDto"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -16,6 +22,9 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="hotelId" type="xs:string"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="rating" type="xs:string" minOccurs="0"/>
+                <xs:element name="address" type="tns:addressDto"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -34,21 +43,21 @@
                 <xs:element name="hotelId" type="xs:string"/>
                 <xs:element name="name" type="xs:string"/>
                 <xs:element name="rating" type="xs:string"/>
-                <xs:element name="address" type="tns:address"/>
+                <xs:element name="address" type="tns:addressDto"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="address">
+    <xs:complexType name="addressDto">
         <xs:sequence>
             <xs:element name="city" type="xs:string"/>
             <xs:element name="state" type="xs:string"/>
             <xs:element name="postalCode" type="xs:string"/>
-            <xs:element name="addressLines" type="tns:addressLines"/>
+            <xs:element name="addressLines" type="tns:addressLinesDto"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="addressLines">
+    <xs:complexType name="addressLinesDto">
         <xs:sequence>
             <xs:element name="exterior" type="xs:string"/>
             <xs:element name="street" type="xs:string"/>

@@ -8,19 +8,19 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for address complex type.
+ * <p>Java class for addressDto complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="address"&gt;
+ * &lt;complexType name="addressDto"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="state" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="postalCode" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="addressLines" type="{http://localhost:8088/hotels}addressLines"/&gt;
+ *         &lt;element name="addressLines" type="{http://localhost:8088/hotels}addressLinesDto"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -30,13 +30,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "address", namespace = "http://localhost:8088/hotels", propOrder = {
+@XmlType(name = "addressDto", namespace = "http://localhost:8088/hotels", propOrder = {
     "city",
     "state",
     "postalCode",
     "addressLines"
 })
-public class Address {
+public class AddressDto {
 
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String city;
@@ -45,7 +45,7 @@ public class Address {
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected String postalCode;
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
-    protected AddressLines addressLines;
+    protected AddressLinesDto addressLines;
 
     /**
      * Gets the value of the city property.
@@ -124,10 +124,10 @@ public class Address {
      * 
      * @return
      *     possible object is
-     *     {@link AddressLines }
+     *     {@link AddressLinesDto }
      *     
      */
-    public AddressLines getAddressLines() {
+    public AddressLinesDto getAddressLines() {
         return addressLines;
     }
 
@@ -136,20 +136,11 @@ public class Address {
      * 
      * @param value
      *     allowed object is
-     *     {@link AddressLines }
+     *     {@link AddressLinesDto }
      *     
      */
-    public void setAddressLines(AddressLines value) {
+    public void setAddressLines(AddressLinesDto value) {
         this.addressLines = value;
-    }
-
-    public static com.soap.choicehotels.ChoiceHotelsSoapService.domain.Address to(Address address){
-        if(address == null)
-            return null;
-
-        return new com.soap.choicehotels.ChoiceHotelsSoapService.domain.Address(
-                address.getCity(), address.getState(), address.postalCode, AddressLines.to(address.getAddressLines())
-        );
     }
 
 }
