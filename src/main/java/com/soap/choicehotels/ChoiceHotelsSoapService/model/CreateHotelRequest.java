@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.*;
  *           &lt;simpleType&gt;
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
  *               &lt;minLength value="1"/&gt;
+ *               &lt;pattern value="[a-zA-Z0-9]*"/&gt;
  *             &lt;/restriction&gt;
  *           &lt;/simpleType&gt;
  *         &lt;/element&gt;

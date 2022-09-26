@@ -7,7 +7,6 @@ import com.soap.choicehotels.ChoiceHotelsSoapService.model.CreateHotelRequest;
 
 public class HotelMapperImpl implements Mapper<CreateHotelRequest, Hotel> {
 
-
     @Override
     public Hotel map(CreateHotelRequest source) {
         Address address = new AddressMapperImpl().map(source.getAddress());

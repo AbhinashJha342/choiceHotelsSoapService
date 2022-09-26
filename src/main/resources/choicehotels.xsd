@@ -9,6 +9,7 @@
                     <xs:simpleType>
                         <xs:restriction base="xs:string">
                             <xs:minLength value="1"/>
+                            <xs:pattern value="[a-zA-Z0-9]*"/>
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
@@ -32,7 +33,7 @@
     <xs:element name="getHotelDetailsRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="hotelId" type="xs:string"/>
+                <xs:element name="hotelId" type="xs:string" minOccurs="1"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -63,4 +64,5 @@
             <xs:element name="street" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+
 </xs:schema>

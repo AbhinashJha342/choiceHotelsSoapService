@@ -33,10 +33,9 @@ public class ChoiceHotelsEndpoint {
         return hotelService.createHotel(request, hotelId);
     }
 
-    /*@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelDetailsRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelDetailsRequest")
     @ResponsePayload
     public GetHotelDetailsResponse createHotel(@RequestPayload GetHotelDetailsRequest request){
-        GetHotelDetailsResponse response = new GetHotelDetailsResponse();
-        return Hotel.from(hotelRepository.getHotelByHotelId(request.getHotelId()));
-    }*/
+        return hotelService.getHotelDetails(request.getHotelId());
+    }
 }
