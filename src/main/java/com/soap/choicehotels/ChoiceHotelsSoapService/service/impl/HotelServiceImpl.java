@@ -2,6 +2,7 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.service.impl;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Amenities;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
+import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenities;
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.NotFoundException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
@@ -37,7 +38,8 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public GetHotelDetailsResponse getHotelDetails(String hotelId) {
         Hotel hotel = repository.getHotelByHotelId(hotelId).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
-        return new HotelResponseMapperImpl().map(hotel);
+        HotelDetailsWithAmenities hotelDetailsWithAmenities = repository.getHotelDetailsWithAmenities(hotelId);
+        return new HotelResponseMapperImpl().map(hotelDetailsWithAmenities);
     }
 
     @Override

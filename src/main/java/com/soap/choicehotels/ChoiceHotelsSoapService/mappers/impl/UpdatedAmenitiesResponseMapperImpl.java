@@ -11,8 +11,7 @@ public class UpdatedAmenitiesResponseMapperImpl implements Mapper<Amenities, Upd
     public UpdateHotelAmenitiesResponse map(Amenities source) {
         UpdateHotelAmenitiesResponse updateHotelAmenitiesResponse = new UpdateHotelAmenitiesResponse();
         updateHotelAmenitiesResponse.setHotelId(source.getHotelId());
-        updateHotelAmenitiesResponse.getAmenities().clear();
         updateHotelAmenitiesResponse.getAmenities().addAll(source.getAmenities());
-        return null;
+        return updateHotelAmenitiesResponse;
     }
 }

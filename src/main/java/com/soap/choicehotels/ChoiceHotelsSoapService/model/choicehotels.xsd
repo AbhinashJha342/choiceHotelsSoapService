@@ -38,6 +38,7 @@
                 <xs:element name="name" type="xs:string"/>
                 <xs:element name="rating" type="xs:string"/>
                 <xs:element name="address" type="tns:addressDto"/>
+                <xs:element name="amenities" type="tns:amenitiesList"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

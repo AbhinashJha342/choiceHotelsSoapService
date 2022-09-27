@@ -2,6 +2,8 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.model;
 
 import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,6 +20,7 @@ import javax.xml.bind.annotation.*;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="address" type="{http://localhost:8088/hotels}addressDto"/&gt;
+ *         &lt;element name="amenities" type="{http://localhost:8088/hotels}amenitiesList"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -31,7 +34,8 @@ import javax.xml.bind.annotation.*;
     "hotelId",
     "name",
     "rating",
-    "address"
+    "address",
+    "amenities"
 })
 @XmlRootElement(name = "getHotelDetailsResponse", namespace = "http://localhost:8088/hotels")
 public class GetHotelDetailsResponse {
@@ -44,6 +48,9 @@ public class GetHotelDetailsResponse {
     protected String rating;
     @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected AddressDto address;
+    @XmlList
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
+    protected List<String> amenities;
 
     /**
      * Gets the value of the hotelId property.
@@ -139,6 +146,35 @@ public class GetHotelDetailsResponse {
      */
     public void setAddress(AddressDto value) {
         this.address = value;
+    }
+
+    /**
+     * Gets the value of the amenities property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a <CODE>set</CODE> method for the amenities property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAmenities().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getAmenities() {
+        if (amenities == null) {
+            amenities = new ArrayList<String>();
+        }
+        return this.amenities;
     }
 
 }

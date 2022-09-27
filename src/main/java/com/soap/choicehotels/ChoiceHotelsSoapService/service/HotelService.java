@@ -1,6 +1,7 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.service;
 
 
+import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenities;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 
 import java.util.UUID;
