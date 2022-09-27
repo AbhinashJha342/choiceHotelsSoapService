@@ -16,7 +16,8 @@ import java.util.List;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="amenities" type="{http://localhost:8088/hotels}amenitiesList" minOccurs="0"/&gt;
+ *         &lt;element name="amenities" type="{http://localhost:8088/hotels}amenitiesList"/&gt;
+ *         &lt;element name="hotelId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -27,14 +28,17 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "amenities"
+    "amenities",
+    "hotelId"
 })
-@XmlRootElement(name = "createHotelAmenities", namespace = "http://localhost:8088/hotels")
-public class CreateHotelAmenities {
+@XmlRootElement(name = "createHotelAmenitiesResponse", namespace = "http://localhost:8088/hotels")
+public class CreateHotelAmenitiesResponse {
 
     @XmlList
-    @XmlElement(namespace = "http://localhost:8088/hotels")
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
     protected List<String> amenities;
+    @XmlElement(namespace = "http://localhost:8088/hotels", required = true)
+    protected String hotelId;
 
     /**
      * Gets the value of the amenities property.
@@ -63,6 +67,30 @@ public class CreateHotelAmenities {
             amenities = new ArrayList<String>();
         }
         return this.amenities;
+    }
+
+    /**
+     * Gets the value of the hotelId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getHotelId() {
+        return hotelId;
+    }
+
+    /**
+     * Sets the value of the hotelId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setHotelId(String value) {
+        this.hotelId = value;
     }
 
 }

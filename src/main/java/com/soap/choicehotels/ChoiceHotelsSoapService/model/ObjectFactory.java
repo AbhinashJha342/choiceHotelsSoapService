@@ -70,11 +70,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreateHotelAmenities }
+     * Create an instance of {@link CreateHotelAmenitiesRequest }
      * 
      */
-    public CreateHotelAmenities createCreateHotelAmenities() {
-        return new CreateHotelAmenities();
+    public CreateHotelAmenitiesRequest createCreateHotelAmenitiesRequest() {
+        return new CreateHotelAmenitiesRequest();
+    }
+
+    /**
+     * Create an instance of {@link CreateHotelAmenitiesResponse }
+     * 
+     */
+    public CreateHotelAmenitiesResponse createCreateHotelAmenitiesResponse() {
+        return new CreateHotelAmenitiesResponse();
     }
 
     /**
