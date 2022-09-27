@@ -3,8 +3,6 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.endpoints;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -53,9 +51,11 @@ public class ChoiceHotelsEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteHotelRequest")
     @ResponsePayload
-    public ResponseEntity deleteHotel(@RequestPayload DeleteHotelRequest deleteHotelRequest){
+    public DeleteHotelResponse deleteHotel(@RequestPayload DeleteHotelRequest deleteHotelRequest){
         hotelService.deleteHotel(deleteHotelRequest);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        DeleteHotelResponse deleteHotelResponse = new DeleteHotelResponse();
+        deleteHotelResponse.setHotelId(deleteHotelRequest.getHotelId());
+        return deleteHotelResponse;
     }
 
 }

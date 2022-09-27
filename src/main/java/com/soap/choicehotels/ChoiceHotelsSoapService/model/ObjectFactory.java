@@ -1,7 +1,7 @@
 
 package com.soap.choicehotels.ChoiceHotelsSoapService.model;
 
-import javax.xml.bind.annotation.XmlRegistry;
+import jakarta.xml.bind.annotation.XmlRegistry;
 
 
 /**
@@ -107,6 +107,14 @@ public class ObjectFactory {
      */
     public DeleteHotelRequest createDeleteHotelRequest() {
         return new DeleteHotelRequest();
+    }
+
+    /**
+     * Create an instance of {@link DeleteHotelResponse }
+     * 
+     */
+    public DeleteHotelResponse createDeleteHotelResponse() {
+        return new DeleteHotelResponse();
     }
 
     /**
