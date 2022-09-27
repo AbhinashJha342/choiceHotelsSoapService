@@ -86,6 +86,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateHotelAmenitiesRequest }
+     * 
+     */
+    public UpdateHotelAmenitiesRequest createUpdateHotelAmenitiesRequest() {
+        return new UpdateHotelAmenitiesRequest();
+    }
+
+    /**
+     * Create an instance of {@link UpdateHotelAmenitiesResponse }
+     * 
+     */
+    public UpdateHotelAmenitiesResponse createUpdateHotelAmenitiesResponse() {
+        return new UpdateHotelAmenitiesResponse();
+    }
+
+    /**
      * Create an instance of {@link AddressLinesDto }
      * 
      */

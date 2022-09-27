@@ -60,6 +60,24 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="updateHotelAmenitiesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="amenities" type="tns:amenitiesList" minOccurs="0"/>
+                <xs:element name="hotelId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateHotelAmenitiesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="amenities" type="tns:amenitiesList"/>
+                <xs:element name="hotelId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="addressDto">
         <xs:sequence>
             <xs:element name="city" type="xs:string"/>
