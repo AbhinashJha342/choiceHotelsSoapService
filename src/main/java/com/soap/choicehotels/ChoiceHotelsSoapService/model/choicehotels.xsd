@@ -26,7 +26,7 @@
     <xs:element name="getHotelDetailsRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="hotelId" type="xs:string" minOccurs="1"/>
+                <xs:element name="hotelId" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -42,10 +42,20 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="createHotelAmenities">
+    <xs:element name="createHotelAmenitiesRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="amenities" type="tns:amenitiesList" minOccurs="0"/>
+                <xs:element name="amenities" type="tns:amenitiesList"/>
+                <xs:element name="hotelId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createHotelAmenitiesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="amenities" type="tns:amenitiesList"/>
+                <xs:element name="hotelId" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
