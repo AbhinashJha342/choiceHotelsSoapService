@@ -102,6 +102,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DeleteHotelRequest }
+     * 
+     */
+    public DeleteHotelRequest createDeleteHotelRequest() {
+        return new DeleteHotelRequest();
+    }
+
+    /**
      * Create an instance of {@link AddressLinesDto }
      * 
      */
