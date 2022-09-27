@@ -1,8 +1,6 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.endpoints;
 
-import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
-import com.soap.choicehotels.ChoiceHotelsSoapService.repository.HotelRepository;
 import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -37,5 +35,11 @@ public class ChoiceHotelsEndpoint {
     @ResponsePayload
     public GetHotelDetailsResponse createHotel(@RequestPayload GetHotelDetailsRequest request){
         return hotelService.getHotelDetails(request.getHotelId());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createHotelAmenitiesRequest")
+    @ResponsePayload
+    public CreateHotelAmenitiesResponse createHotelAmenities(@RequestPayload CreateHotelAmenitiesRequest amenities){
+        return hotelService.createHotelAmenities(amenities);
     }
 }
