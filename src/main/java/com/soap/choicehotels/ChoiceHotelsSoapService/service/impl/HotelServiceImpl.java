@@ -37,23 +37,31 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public GetHotelDetailsResponse getHotelDetails(String hotelId) {
-        Hotel hotel = repository.getHotelByHotelId(hotelId).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
+        repository.getHotelByHotelIdAndDeletedIsFalse(hotelId).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
         HotelDetailsWithAmenities hotelDetailsWithAmenities = repository.getHotelDetailsWithAmenities(hotelId);
         return new HotelResponseMapperImpl().map(hotelDetailsWithAmenities);
     }
 
     @Override
     public CreateHotelAmenitiesResponse createHotelAmenities(CreateHotelAmenitiesRequest amenities) {
-        repository.getHotelByHotelId(amenities.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
+        repository.getHotelByHotelIdAndDeletedIsFalse(amenities.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
         Amenities amenitiesCreated = amenitiesRepository.save(new AmenitiesMapperImpl().map(amenities));
         return new HotelAmenitiesResponseMapperImpl().map(amenitiesCreated);
     }
 
     @Override
     public UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities) {
-        Amenities existingAmenities = amenitiesRepository.findAmenitiesByHotelId(updatedAmenities.getHotelId()).orElseThrow(()-> new NotFoundException("No amenities exists fo upate for the provided hotelId."+updatedAmenities.getHotelId()));
+        repository.getHotelByHotelIdAndDeletedIsFalse(updatedAmenities.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found for the hotelId."));
+        Amenities existingAmenities = amenitiesRepository.findAmenitiesByHotelId(updatedAmenities.getHotelId()).orElseThrow(()-> new NotFoundException("No amenities exists for update for the provided hotelId."+updatedAmenities.getHotelId()));
         existingAmenities.setAmenities(updatedAmenities.getAmenities());
         amenitiesRepository.save(existingAmenities);
         return new UpdatedAmenitiesResponseMapperImpl().map(existingAmenities);
+    }
+
+    @Override
+    public void deleteHotel(DeleteHotelRequest deleteHotelRequest) {
+        Hotel hotel = repository.getHotelByHotelIdAndDeletedIsFalse(deleteHotelRequest.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
+        hotel.setDeleted(true);
+        repository.save(hotel);
     }
 }

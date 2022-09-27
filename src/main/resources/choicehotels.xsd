@@ -87,6 +87,7 @@
         </xs:complexType>
     </xs:element>
 
+
     <xs:complexType name="addressDto">
         <xs:sequence>
             <xs:element name="city" type="xs:string"/>

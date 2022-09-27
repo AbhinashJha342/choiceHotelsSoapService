@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface HotelRepository extends JpaRepository<Hotel, Long> {
 
 
-    Optional<Hotel> getHotelByHotelId(String hotelId);
+    Optional<Hotel> getHotelByHotelIdAndDeletedIsFalse(String hotelId);
 
     @Query(nativeQuery = true, name = "hotelDetailsWithAmenities")
     HotelDetailsWithAmenities getHotelDetailsWithAmenities(String hotelId);

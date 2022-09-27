@@ -16,4 +16,6 @@ public interface HotelService {
 
     UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities);
 
+    void deleteHotel(DeleteHotelRequest deleteHotelRequest);
+
 }
