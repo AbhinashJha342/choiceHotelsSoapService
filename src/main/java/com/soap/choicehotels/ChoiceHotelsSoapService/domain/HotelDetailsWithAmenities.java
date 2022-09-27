@@ -1,9 +1,6 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.domain;
 
-import com.soap.choicehotels.ChoiceHotelsSoapService.configuration.StringListConverter;
-
 import javax.persistence.*;
-import java.util.List;
 
 @SqlResultSetMapping(
         name="hotelDetailsWithAmenities",
@@ -25,8 +22,8 @@ import java.util.List;
         }
 )
 @NamedNativeQuery(name = "hotelDetailsWithAmenities", query = "select ht.hotel_id, ht.name, ht.rating, addr.exterior, addr.street, addr.city, addr.postal_code, \n" +
-        "addr.state, amen.amenities from hotel ht left outer join address addr on ht.address_id = addr.id\n" +
-        "left outer join amenities amen on ht.hotel_id = amen.hotel_id", resultClass = HotelDetailsWithAmenities.class, resultSetMapping = "hotelDetailsWithAmenities")
+        "addr.state, amen.amenities from hotel ht where ht.hotel_id = :hotelId left outer join address addr on ht.address_id = addr.id and ht.deleted is false\n" +
+        "left outer join amenities amen on ht.hotel_id = amen.hotel_id where ht.hotel_id=:hotelId", resultClass = HotelDetailsWithAmenities.class, resultSetMapping = "hotelDetailsWithAmenities")
 
 @Entity
 public class HotelDetailsWithAmenities {

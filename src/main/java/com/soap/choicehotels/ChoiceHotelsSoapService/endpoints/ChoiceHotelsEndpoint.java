@@ -3,12 +3,14 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.endpoints;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @Endpoint
@@ -56,6 +58,17 @@ public class ChoiceHotelsEndpoint {
         DeleteHotelResponse deleteHotelResponse = new DeleteHotelResponse();
         deleteHotelResponse.setHotelId(deleteHotelRequest.getHotelId());
         return deleteHotelResponse;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelByNameRequest")
+    @ResponsePayload
+    public List<GetHotelDetailsResponse> getHotelDetailsByName(@RequestPayload GetHotelByNameRequest getHotelByNameRequest){
+
+        if(ObjectUtils.isEmpty(getHotelByNameRequest) || ObjectUtils.isEmpty(getHotelByNameRequest.getName()))
+            return hotelService.getAllHotel();
+
+        return null;
+
     }
 
 }
