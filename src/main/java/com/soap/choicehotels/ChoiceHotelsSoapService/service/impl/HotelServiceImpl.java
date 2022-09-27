@@ -2,7 +2,7 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.service.impl;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Amenities;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
-import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenities;
+import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenitiesByHotelId;
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.NotFoundException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
@@ -12,14 +12,15 @@ import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class HotelServiceImpl implements HotelService {
 
-    private HotelRepository repository;
+    private final HotelRepository repository;
 
-    private AmenitiesRepository amenitiesRepository;
+    private final AmenitiesRepository amenitiesRepository;
 
     @Autowired
     public HotelServiceImpl(HotelRepository repository, AmenitiesRepository amenitiesRepository) {
@@ -38,7 +39,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public GetHotelDetailsResponse getHotelDetails(String hotelId) {
         repository.getHotelByHotelIdAndDeletedIsFalse(hotelId).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
-        HotelDetailsWithAmenities hotelDetailsWithAmenities = repository.getHotelDetailsWithAmenities(hotelId);
+        HotelDetailsWithAmenitiesByHotelId hotelDetailsWithAmenities = repository.getHotelDetailsWithAmenitiesByHotelId(hotelId);
         return new HotelResponseMapperImpl().map(hotelDetailsWithAmenities);
     }
 
@@ -63,5 +64,16 @@ public class HotelServiceImpl implements HotelService {
         Hotel hotel = repository.getHotelByHotelIdAndDeletedIsFalse(deleteHotelRequest.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
         hotel.setDeleted(true);
         repository.save(hotel);
+    }
+
+    @Override
+    public List<GetHotelDetailsResponse> getAllHotel() {
+        List<Hotel> hotelList = repository.getHotelsByDeletedIsFalse();
+        return null;
+    }
+
+    @Override
+    public GetHotelDetailsResponse getHotelDetailByName(GetHotelDetailsRequest getHotelDetailsRequest) {
+        return null;
     }
 }

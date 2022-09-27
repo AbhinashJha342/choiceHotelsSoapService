@@ -1,9 +1,9 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.service;
 
 
-import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenities;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface HotelService {
@@ -17,5 +17,11 @@ public interface HotelService {
     UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities);
 
     void deleteHotel(DeleteHotelRequest deleteHotelRequest);
+
+    List<GetHotelDetailsResponse> getAllHotel();
+
+    GetHotelDetailsResponse getHotelDetailByName(GetHotelDetailsRequest getHotelDetailsRequest);
+
+
 
 }

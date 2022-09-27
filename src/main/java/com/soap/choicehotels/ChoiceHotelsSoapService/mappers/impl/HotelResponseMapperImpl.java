@@ -2,7 +2,7 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Address;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines;
-import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenities;
+import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenitiesByHotelId;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.Mapper;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.GetHotelDetailsResponse;
 
@@ -11,10 +11,10 @@ import java.util.List;
 
 import static java.util.Collections.emptyList;
 
-public class HotelResponseMapperImpl implements Mapper<HotelDetailsWithAmenities, GetHotelDetailsResponse> {
+public class HotelResponseMapperImpl implements Mapper<HotelDetailsWithAmenitiesByHotelId, GetHotelDetailsResponse> {
 
     @Override
-    public GetHotelDetailsResponse map(HotelDetailsWithAmenities source) {
+    public GetHotelDetailsResponse map(HotelDetailsWithAmenitiesByHotelId source) {
         GetHotelDetailsResponse hotelDetailsResponse = new GetHotelDetailsResponse();
         hotelDetailsResponse.setHotelId(source.getHotel_id());
         hotelDetailsResponse.setName(source.getName());
