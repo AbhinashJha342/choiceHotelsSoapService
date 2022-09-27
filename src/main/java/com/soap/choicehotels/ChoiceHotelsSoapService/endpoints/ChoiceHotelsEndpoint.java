@@ -42,4 +42,10 @@ public class ChoiceHotelsEndpoint {
     public CreateHotelAmenitiesResponse createHotelAmenities(@RequestPayload CreateHotelAmenitiesRequest amenities){
         return hotelService.createHotelAmenities(amenities);
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateHotelAmenitiesRequest")
+    @ResponsePayload
+    public UpdateHotelAmenitiesResponse updateHotelAmenities(@RequestPayload UpdateHotelAmenitiesRequest updatedAmenities){
+        return hotelService.updateHotelAmenities(updatedAmenities);
+    }
 }

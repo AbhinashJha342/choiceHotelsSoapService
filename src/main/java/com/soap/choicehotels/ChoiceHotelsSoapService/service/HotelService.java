@@ -13,4 +13,6 @@ public interface HotelService {
 
     CreateHotelAmenitiesResponse createHotelAmenities(CreateHotelAmenitiesRequest amenities);
 
+    UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities);
+
 }

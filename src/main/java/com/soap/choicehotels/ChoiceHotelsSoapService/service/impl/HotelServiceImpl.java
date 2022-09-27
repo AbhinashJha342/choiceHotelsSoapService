@@ -46,4 +46,12 @@ public class HotelServiceImpl implements HotelService {
         Amenities amenitiesCreated = amenitiesRepository.save(new AmenitiesMapperImpl().map(amenities));
         return new HotelAmenitiesResponseMapperImpl().map(amenitiesCreated);
     }
+
+    @Override
+    public UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities) {
+        Amenities existingAmenities = amenitiesRepository.findAmenitiesByHotelId(updatedAmenities.getHotelId()).orElseThrow(()-> new NotFoundException("No amenities exists fo upate for the provided hotelId."+updatedAmenities.getHotelId()));
+        existingAmenities.setAmenities(updatedAmenities.getAmenities());
+        amenitiesRepository.save(existingAmenities);
+        return new UpdatedAmenitiesResponseMapperImpl().map(existingAmenities);
+    }
 }
