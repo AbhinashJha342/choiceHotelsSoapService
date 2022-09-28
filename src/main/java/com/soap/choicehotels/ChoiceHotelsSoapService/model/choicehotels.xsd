@@ -87,6 +87,7 @@
         </xs:complexType>
     </xs:element>
 
+
     <xs:element name="deleteHotelResponse">
         <xs:complexType>
             <xs:sequence>
@@ -102,6 +103,25 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:element name="getHotelByNameResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="hotelDetails" type="tns:hotelsByNameResponse" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="hotelsByNameResponse">
+        <xs:sequence>
+            <xs:element name="hotelId" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="rating" type="xs:string"/>
+            <xs:element name="address" type="tns:addressDto"/>
+            <xs:element name="amenities" type="tns:amenitiesList"/>
+        </xs:sequence>
+    </xs:complexType>
+
 
     <xs:complexType name="addressDto">
         <xs:sequence>

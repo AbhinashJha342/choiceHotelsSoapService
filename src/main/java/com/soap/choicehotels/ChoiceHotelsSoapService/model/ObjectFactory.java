@@ -126,6 +126,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetHotelByNameResponse }
+     * 
+     */
+    public GetHotelByNameResponse createGetHotelByNameResponse() {
+        return new GetHotelByNameResponse();
+    }
+
+    /**
+     * Create an instance of {@link HotelsByNameResponse }
+     * 
+     */
+    public HotelsByNameResponse createHotelsByNameResponse() {
+        return new HotelsByNameResponse();
+    }
+
+    /**
      * Create an instance of {@link AddressLinesDto }
      * 
      */
