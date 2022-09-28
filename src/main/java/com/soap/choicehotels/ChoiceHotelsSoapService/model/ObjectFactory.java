@@ -54,6 +54,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateHotelRequest }
+     * 
+     */
+    public UpdateHotelRequest createUpdateHotelRequest() {
+        return new UpdateHotelRequest();
+    }
+
+    /**
+     * Create an instance of {@link UpdateHotelResponse }
+     * 
+     */
+    public UpdateHotelResponse createUpdateHotelResponse() {
+        return new UpdateHotelResponse();
+    }
+
+    /**
      * Create an instance of {@link GetHotelDetailsRequest }
      * 
      */

@@ -23,6 +23,28 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="updateHotelRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="hotelId" type="xs:string"/>
+                <xs:element name="name" type="tns:nonEmptyString" minOccurs="0"/>
+                <xs:element name="rating" type="xs:string" minOccurs="0"/>
+                <xs:element name="address" type="tns:addressDto" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateHotelResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="hotelId" type="xs:string"/>
+                <xs:element name="name" type="tns:nonEmptyString"/>
+                <xs:element name="rating" type="xs:string"/>
+                <xs:element name="address" type="tns:addressDto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="getHotelDetailsRequest">
         <xs:complexType>
             <xs:sequence>
