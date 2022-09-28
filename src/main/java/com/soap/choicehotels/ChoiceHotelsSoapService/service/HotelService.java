@@ -18,9 +18,9 @@ public interface HotelService {
 
     void deleteHotel(DeleteHotelRequest deleteHotelRequest);
 
-    List<GetHotelDetailsResponse> getAllHotel();
+    GetHotelByNameResponse getAllHotel();
 
-    GetHotelDetailsResponse getHotelDetailByName(GetHotelDetailsRequest getHotelDetailsRequest);
+    GetHotelByNameResponse getHotelDetailByName(GetHotelByNameRequest getHotelDetailsRequest);
 
 
 

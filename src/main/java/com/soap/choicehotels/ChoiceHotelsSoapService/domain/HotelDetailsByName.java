@@ -1,12 +1,13 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.domain;
 
+
 import javax.persistence.*;
 
 @SqlResultSetMapping(
-        name="hotelAmenitiesMapping",
+        name="hotelsByNameMapping",
         classes={
                 @ConstructorResult(
-                        targetClass= HotelDetailsWithAmenities.class,
+                        targetClass= HotelDetailsByName.class,
                         columns={
                                 @ColumnResult(name="hotel_id"),
                                 @ColumnResult(name="name"),
@@ -21,12 +22,13 @@ import javax.persistence.*;
                 )
         }
 )
-@NamedNativeQuery(name = "hotelAmenitiesMapping", query = "select ht.hotel_id, ht.name, ht.rating, addr.exterior, addr.street, addr.city, addr.postal_code, \n" +
+@NamedNativeQuery(name = "hotelsByNameMapping", query = "select ht.hotel_id, ht.name, ht.rating, addr.exterior, addr.street, addr.city, addr.postal_code, \n" +
         "addr.state, amen.amenities from hotel ht left outer join address addr on ht.address_id = addr.id and ht.deleted is false\n" +
-        "left outer join amenities amen on ht.hotel_id = amen.hotel_id", resultClass = HotelDetailsWithAmenities.class, resultSetMapping = "hotelAmenitiesMapping")
+        "left outer join amenities amen on ht.hotel_id = amen.hotel_id where ht.name ilike concat('%', :name, '%')", resultClass = HotelDetailsByName.class,
+        resultSetMapping = "hotelsByNameMapping")
 
 @Entity
-public class HotelDetailsWithAmenities {
+public class HotelDetailsByName {
 
     private String hotel_id;
 
@@ -45,10 +47,11 @@ public class HotelDetailsWithAmenities {
     private String exterior;
 
     private String street;
+
     @Id
     private Long id;
 
-    public HotelDetailsWithAmenities(String hotel_id, String name, String rating, String amenities, String city, String state, String postal_code, String exterior, String street) {
+    public HotelDetailsByName(String hotel_id, String name, String rating, String amenities, String city, String state, String postal_code, String exterior, String street) {
         this.hotel_id = hotel_id;
         this.name = name;
         this.rating = rating;
@@ -60,7 +63,7 @@ public class HotelDetailsWithAmenities {
         this.street = street;
     }
 
-    public HotelDetailsWithAmenities() {
+    public HotelDetailsByName() {
     }
 
     public String getHotel_id() {

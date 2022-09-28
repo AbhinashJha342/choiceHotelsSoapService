@@ -1,8 +1,6 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.service.impl;
 
-import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Amenities;
-import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
-import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenitiesByHotelId;
+import com.soap.choicehotels.ChoiceHotelsSoapService.domain.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.NotFoundException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
@@ -12,8 +10,12 @@ import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static java.util.Collections.emptyList;
 
 @Service
 public class HotelServiceImpl implements HotelService {
@@ -67,13 +69,14 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<GetHotelDetailsResponse> getAllHotel() {
-        List<Hotel> hotelList = repository.getHotelsByDeletedIsFalse();
-        return null;
+    public GetHotelByNameResponse getAllHotel() {
+        List<HotelDetailsWithAmenities> hotelList = repository.getHotelsByDeletedIsFalse().orElseThrow(()-> new NotFoundException("No hotel are registered."));
+        return new AllHotelDetailsResponseMapperImpl().map(hotelList);
     }
 
     @Override
-    public GetHotelDetailsResponse getHotelDetailByName(GetHotelDetailsRequest getHotelDetailsRequest) {
-        return null;
+    public GetHotelByNameResponse getHotelDetailByName(GetHotelByNameRequest getHotelDetailsRequest) {
+        List<HotelDetailsByName> hotelDetailsByNames = repository.getHotelsByNameContainingIgnoreCaseAndDeletedIsFalse(getHotelDetailsRequest.getName()).orElseThrow(()-> new NotFoundException("No hotel found with the given criteria."));
+        return new HotelsByNameMapperImpl().map(hotelDetailsByNames);
     }
 }

@@ -62,13 +62,12 @@ public class ChoiceHotelsEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelByNameRequest")
     @ResponsePayload
-    public List<GetHotelDetailsResponse> getHotelDetailsByName(@RequestPayload GetHotelByNameRequest getHotelByNameRequest){
+    public GetHotelByNameResponse getHotelDetailsByName(@RequestPayload GetHotelByNameRequest getHotelByNameRequest){
 
         if(ObjectUtils.isEmpty(getHotelByNameRequest) || ObjectUtils.isEmpty(getHotelByNameRequest.getName()))
             return hotelService.getAllHotel();
 
-        return null;
-
+        return hotelService.getHotelDetailByName(getHotelByNameRequest);
     }
 
 }
