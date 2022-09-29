@@ -10,12 +10,8 @@ import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
-import static java.util.Collections.emptyList;
 
 @Service
 public class HotelServiceImpl implements HotelService {
@@ -43,6 +39,15 @@ public class HotelServiceImpl implements HotelService {
         repository.getHotelByHotelIdAndDeletedIsFalse(hotelId).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
         HotelDetailsWithAmenitiesByHotelId hotelDetailsWithAmenities = repository.getHotelDetailsWithAmenitiesByHotelId(hotelId);
         return new HotelResponseMapperImpl().map(hotelDetailsWithAmenities);
+    }
+
+    @Override
+    public UpdateHotelResponse updateHotelDetails(UpdateHotelRequest updateHotelRequest) {
+        Hotel hotel = repository.getHotelByHotelIdAndDeletedIsFalse(updateHotelRequest.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
+        hotel.setAddress(new AddressMapperImpl().map(updateHotelRequest.getAddress()));
+        hotel.setName(updateHotelRequest.getName());
+        hotel.setRating(updateHotelRequest.getRating());
+        return new UpdatedHotelResponseMapperImpl().map(repository.save(hotel));
     }
 
     @Override

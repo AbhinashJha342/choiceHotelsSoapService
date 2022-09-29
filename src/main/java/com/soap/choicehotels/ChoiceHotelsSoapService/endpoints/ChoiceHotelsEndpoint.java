@@ -10,7 +10,6 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.UUID;
 
 @Endpoint
@@ -35,8 +34,14 @@ public class ChoiceHotelsEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelDetailsRequest")
     @ResponsePayload
-    public GetHotelDetailsResponse createHotel(@RequestPayload GetHotelDetailsRequest request){
+    public GetHotelDetailsResponse getHotelDetails(@RequestPayload GetHotelDetailsRequest request){
         return hotelService.getHotelDetails(request.getHotelId());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateHotelRequest")
+    @ResponsePayload
+    public UpdateHotelResponse updateHotelDetails(@RequestPayload UpdateHotelRequest request){
+        return hotelService.updateHotelDetails(request);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createHotelAmenitiesRequest")

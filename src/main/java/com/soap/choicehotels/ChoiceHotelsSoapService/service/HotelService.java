@@ -12,6 +12,8 @@ public interface HotelService {
 
     GetHotelDetailsResponse getHotelDetails(String hotelId);
 
+    UpdateHotelResponse updateHotelDetails(UpdateHotelRequest updateHotelRequest);
+
     CreateHotelAmenitiesResponse createHotelAmenities(CreateHotelAmenitiesRequest amenities);
 
     UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities);
