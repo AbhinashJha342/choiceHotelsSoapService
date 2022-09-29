@@ -1,16 +1,17 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.service.impl;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.*;
+import com.soap.choicehotels.ChoiceHotelsSoapService.exception.CustomDbDataUpdatedException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.NotFoundException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.repository.AmenitiesRepository;
 import com.soap.choicehotels.ChoiceHotelsSoapService.repository.HotelRepository;
 import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -20,7 +21,6 @@ public class HotelServiceImpl implements HotelService {
 
     private final AmenitiesRepository amenitiesRepository;
 
-    @Autowired
     public HotelServiceImpl(HotelRepository repository, AmenitiesRepository amenitiesRepository) {
         this.repository = repository;
         this.amenitiesRepository = amenitiesRepository;
@@ -35,15 +35,15 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public GetHotelDetailsResponse getHotelDetails(String hotelId) {
-        repository.getHotelByHotelIdAndDeletedIsFalse(hotelId).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
+    public GetHotelDetailsResponse getHotelDetails(String hotelId) throws NotFoundException {
+        repository.getHotelByHotelIdAndDeletedIsFalse(hotelId).orElseThrow(()-> new NotFoundException("Invalid hotelId", "No hotel found for the provided hotelId. "+ hotelId));
         HotelDetailsWithAmenitiesByHotelId hotelDetailsWithAmenities = repository.getHotelDetailsWithAmenitiesByHotelId(hotelId);
         return new HotelResponseMapperImpl().map(hotelDetailsWithAmenities);
     }
 
     @Override
-    public UpdateHotelResponse updateHotelDetails(UpdateHotelRequest updateHotelRequest) {
-        Hotel hotel = repository.getHotelByHotelIdAndDeletedIsFalse(updateHotelRequest.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
+    public UpdateHotelResponse updateHotelDetails(UpdateHotelRequest updateHotelRequest) throws NotFoundException {
+        Hotel hotel = repository.getHotelByHotelIdAndDeletedIsFalse(updateHotelRequest.getHotelId()).orElseThrow(()-> new NotFoundException("Invalid hotelId","No hotel found for the provided hotelId. "+updateHotelRequest.getHotelId() ));
         hotel.setAddress(new AddressMapperImpl().map(updateHotelRequest.getAddress()));
         hotel.setName(updateHotelRequest.getName());
         hotel.setRating(updateHotelRequest.getRating());
@@ -51,37 +51,41 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public CreateHotelAmenitiesResponse createHotelAmenities(CreateHotelAmenitiesRequest amenities) {
-        repository.getHotelByHotelIdAndDeletedIsFalse(amenities.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
+    public CreateHotelAmenitiesResponse createHotelAmenities(CreateHotelAmenitiesRequest amenities) throws CustomDbDataUpdatedException, NotFoundException {
+        Hotel hotel = repository.getHotelByHotelIdAndDeletedIsFalse(amenities.getHotelId()).orElseThrow(()-> new NotFoundException("Invalid hotelId", "No hotel found for the given hotelId. "+amenities.getHotelId()));
+        Optional<Amenities> amenities1 = amenitiesRepository.findAmenitiesByHotelId(hotel.getHotelId());
+        if(amenities1.isPresent())
+            throw new CustomDbDataUpdatedException("Invalid data.", "amenities already exist for this hotel with hotelId " + hotel.getHotelId() + "Please use the update option.");
         Amenities amenitiesCreated = amenitiesRepository.save(new AmenitiesMapperImpl().map(amenities));
         return new HotelAmenitiesResponseMapperImpl().map(amenitiesCreated);
     }
 
     @Override
-    public UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities) {
-        repository.getHotelByHotelIdAndDeletedIsFalse(updatedAmenities.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found for the hotelId."));
-        Amenities existingAmenities = amenitiesRepository.findAmenitiesByHotelId(updatedAmenities.getHotelId()).orElseThrow(()-> new NotFoundException("No amenities exists for update for the provided hotelId."+updatedAmenities.getHotelId()));
+    public UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities) throws NotFoundException {
+        repository.getHotelByHotelIdAndDeletedIsFalse(updatedAmenities.getHotelId()).orElseThrow(()-> new NotFoundException("Invalid hotelId", "No hotel found for this hotelId. "+updatedAmenities.getHotelId()));
+        Amenities existingAmenities = amenitiesRepository.findAmenitiesByHotelId(updatedAmenities.getHotelId()).orElseThrow(()-> new NotFoundException("No amenities created for this hotel.", "No amenities created for this hotel."+updatedAmenities.getHotelId()+"Please create the amenities before updating."));
         existingAmenities.setAmenities(updatedAmenities.getAmenities());
         amenitiesRepository.save(existingAmenities);
         return new UpdatedAmenitiesResponseMapperImpl().map(existingAmenities);
     }
 
     @Override
-    public void deleteHotel(DeleteHotelRequest deleteHotelRequest) {
-        Hotel hotel = repository.getHotelByHotelIdAndDeletedIsFalse(deleteHotelRequest.getHotelId()).orElseThrow(()-> new NotFoundException("No hotel found by this criteria."));
+    public void deleteHotel(DeleteHotelRequest deleteHotelRequest) throws NotFoundException {
+        Hotel hotel = repository.getHotelByHotelIdAndDeletedIsFalse(deleteHotelRequest.getHotelId()).orElseThrow(()-> new NotFoundException("Invalid hotelId", "This hotel doesn't exist. Please check the hotelId. "+deleteHotelRequest.getHotelId()));
         hotel.setDeleted(true);
         repository.save(hotel);
+        amenitiesRepository.deleteById(hotel.getId());
     }
 
     @Override
-    public GetHotelByNameResponse getAllHotel() {
-        List<HotelDetailsWithAmenities> hotelList = repository.getHotelsByDeletedIsFalse().orElseThrow(()-> new NotFoundException("No hotel are registered."));
+    public GetHotelByNameResponse getAllHotel() throws NotFoundException {
+        List<HotelDetailsWithAmenities> hotelList = repository.getHotelsByDeletedIsFalse().orElseThrow(()-> new NotFoundException("Invalid request", "No hotel exists."));
         return new AllHotelDetailsResponseMapperImpl().map(hotelList);
     }
 
     @Override
-    public GetHotelByNameResponse getHotelDetailByName(GetHotelByNameRequest getHotelDetailsRequest) {
-        List<HotelDetailsByName> hotelDetailsByNames = repository.getHotelsByNameContainingIgnoreCaseAndDeletedIsFalse(getHotelDetailsRequest.getName()).orElseThrow(()-> new NotFoundException("No hotel found with the given criteria."));
+    public GetHotelByNameResponse getHotelDetailByName(GetHotelByNameRequest getHotelDetailsRequest) throws NotFoundException {
+        List<HotelDetailsByName> hotelDetailsByNames = repository.getHotelsByNameContainingIgnoreCaseAndDeletedIsFalse(getHotelDetailsRequest.getName()).orElseThrow(()-> new NotFoundException("Invalid Input", "No hotel exists with the name or whose name consists. "+getHotelDetailsRequest.getName()));
         return new HotelsByNameMapperImpl().map(hotelDetailsByNames);
     }
 }

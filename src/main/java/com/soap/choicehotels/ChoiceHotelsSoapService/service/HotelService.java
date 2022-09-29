@@ -1,6 +1,8 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.service;
 
 
+import com.soap.choicehotels.ChoiceHotelsSoapService.exception.CustomDbDataUpdatedException;
+import com.soap.choicehotels.ChoiceHotelsSoapService.exception.NotFoundException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 
 import java.util.List;
@@ -10,19 +12,19 @@ public interface HotelService {
 
     CreateHotelResponse createHotel(CreateHotelRequest hotelRequest, UUID hotelId);
 
-    GetHotelDetailsResponse getHotelDetails(String hotelId);
+    GetHotelDetailsResponse getHotelDetails(String hotelId) throws NotFoundException;
 
-    UpdateHotelResponse updateHotelDetails(UpdateHotelRequest updateHotelRequest);
+    UpdateHotelResponse updateHotelDetails(UpdateHotelRequest updateHotelRequest) throws NotFoundException;
 
-    CreateHotelAmenitiesResponse createHotelAmenities(CreateHotelAmenitiesRequest amenities);
+    CreateHotelAmenitiesResponse createHotelAmenities(CreateHotelAmenitiesRequest amenities) throws CustomDbDataUpdatedException, NotFoundException;
 
-    UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities);
+    UpdateHotelAmenitiesResponse updateHotelAmenities(UpdateHotelAmenitiesRequest updatedAmenities) throws NotFoundException;
 
-    void deleteHotel(DeleteHotelRequest deleteHotelRequest);
+    void deleteHotel(DeleteHotelRequest deleteHotelRequest) throws NotFoundException;
 
-    GetHotelByNameResponse getAllHotel();
+    GetHotelByNameResponse getAllHotel() throws NotFoundException;
 
-    GetHotelByNameResponse getHotelDetailByName(GetHotelByNameRequest getHotelDetailsRequest);
+    GetHotelByNameResponse getHotelDetailByName(GetHotelByNameRequest getHotelDetailsRequest) throws NotFoundException;
 
 
 

@@ -1,8 +1,9 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.endpoints;
 
+import com.soap.choicehotels.ChoiceHotelsSoapService.exception.CustomDbDataUpdatedException;
+import com.soap.choicehotels.ChoiceHotelsSoapService.exception.NotFoundException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -17,10 +18,8 @@ public class ChoiceHotelsEndpoint {
 
     private static final String NAMESPACE_URI = "http://localhost:8088/hotels";
 
-    private HotelService hotelService;
+    private final HotelService hotelService;
 
-    //TODO check for @Autowire
-    @Autowired
     public ChoiceHotelsEndpoint(HotelService hotelService) {
         this.hotelService = hotelService;
     }
@@ -34,31 +33,31 @@ public class ChoiceHotelsEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelDetailsRequest")
     @ResponsePayload
-    public GetHotelDetailsResponse getHotelDetails(@RequestPayload GetHotelDetailsRequest request){
+    public GetHotelDetailsResponse getHotelDetails(@RequestPayload GetHotelDetailsRequest request) throws NotFoundException {
         return hotelService.getHotelDetails(request.getHotelId());
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateHotelRequest")
     @ResponsePayload
-    public UpdateHotelResponse updateHotelDetails(@RequestPayload UpdateHotelRequest request){
+    public UpdateHotelResponse updateHotelDetails(@RequestPayload UpdateHotelRequest request) throws NotFoundException {
         return hotelService.updateHotelDetails(request);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createHotelAmenitiesRequest")
     @ResponsePayload
-    public CreateHotelAmenitiesResponse createHotelAmenities(@RequestPayload CreateHotelAmenitiesRequest amenities){
+    public CreateHotelAmenitiesResponse createHotelAmenities(@RequestPayload CreateHotelAmenitiesRequest amenities) throws CustomDbDataUpdatedException, NotFoundException {
         return hotelService.createHotelAmenities(amenities);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateHotelAmenitiesRequest")
     @ResponsePayload
-    public UpdateHotelAmenitiesResponse updateHotelAmenities(@RequestPayload UpdateHotelAmenitiesRequest updatedAmenities){
+    public UpdateHotelAmenitiesResponse updateHotelAmenities(@RequestPayload UpdateHotelAmenitiesRequest updatedAmenities) throws NotFoundException {
         return hotelService.updateHotelAmenities(updatedAmenities);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteHotelRequest")
     @ResponsePayload
-    public DeleteHotelResponse deleteHotel(@RequestPayload DeleteHotelRequest deleteHotelRequest){
+    public DeleteHotelResponse deleteHotel(@RequestPayload DeleteHotelRequest deleteHotelRequest) throws NotFoundException {
         hotelService.deleteHotel(deleteHotelRequest);
         DeleteHotelResponse deleteHotelResponse = new DeleteHotelResponse();
         deleteHotelResponse.setHotelId(deleteHotelRequest.getHotelId());
@@ -67,7 +66,7 @@ public class ChoiceHotelsEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getHotelByNameRequest")
     @ResponsePayload
-    public GetHotelByNameResponse getHotelDetailsByName(@RequestPayload GetHotelByNameRequest getHotelByNameRequest){
+    public GetHotelByNameResponse getHotelDetailsByName(@RequestPayload GetHotelByNameRequest getHotelByNameRequest) throws NotFoundException {
 
         if(ObjectUtils.isEmpty(getHotelByNameRequest) || ObjectUtils.isEmpty(getHotelByNameRequest.getName()))
             return hotelService.getAllHotel();

@@ -1,0 +1,13 @@
+version: '1'
+
+services:
+  choice-hotels-db:
+    image: postgres:latest
+    container_name: choice-hotels-db
+    ports:
+      - "5432:5432"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: postgres
+      MYSQL_PASSWORD: mysecretpassword
+      MYSQL_ROOT_HOST: '%'

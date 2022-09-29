@@ -2,23 +2,22 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class NotFoundException extends Exception {
+public class CustomDbDataUpdatedException extends Exception{
 
     private String errorDetails;
 
     private int status;
 
-    public NotFoundException(String message, String errorDetails) {
+    public CustomDbDataUpdatedException(String message, String errorDetails) {
         super(message);
         this.errorDetails = errorDetails;
-        this.status = HttpStatus.NOT_FOUND.value();
+        this.status = HttpStatus.BAD_REQUEST.value();
     }
 
-    public NotFoundException() {
-        super();
+    public CustomDbDataUpdatedException() {
     }
 
-    public NotFoundException(String message) {
+    public CustomDbDataUpdatedException(String message) {
         super(message);
     }
 
