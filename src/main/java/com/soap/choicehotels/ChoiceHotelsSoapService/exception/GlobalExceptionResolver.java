@@ -1,6 +1,5 @@
 package com.soap.choicehotels.ChoiceHotelsSoapService.exception;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.ws.soap.SoapFault;
 import org.springframework.ws.soap.SoapFaultDetail;
 import org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver;
@@ -15,13 +14,18 @@ public class GlobalExceptionResolver extends SoapFaultMappingExceptionResolver {
     @Override
     protected void customizeFault(Object endpoint, Exception ex, SoapFault fault) {
         logger.warn("Exception processed ", ex);
-        if (ex instanceof NotFoundException || ex instanceof CustomDbDataUpdatedException) {
-            int status = ((NotFoundException) ex).getStatus();
-            String detailMessage = ((NotFoundException) ex).getErrorDetails();
-            SoapFaultDetail detail = fault.addFaultDetail();
-            detail.addFaultDetailElement(CODE).addText(String.valueOf(status));
-            detail.addFaultDetailElement(MESSAGE).addText(detailMessage);
+        int status = 0;
+        String detailMessage = null;
+        if (ex instanceof NotFoundException) {
+            status = ((NotFoundException) ex).getStatus();
+            detailMessage = ((NotFoundException) ex).getErrorDetails();
+        } else if(ex instanceof CustomDbDataUpdatedException) {
+            status = ((CustomDbDataUpdatedException) ex).getStatus();
+            detailMessage = ((CustomDbDataUpdatedException) ex).getErrorDetails();
         }
+        SoapFaultDetail detail = fault.addFaultDetail();
+        detail.addFaultDetailElement(CODE).addText(String.valueOf(status));
+        detail.addFaultDetailElement(MESSAGE).addText(detailMessage);
     }
 
 }
