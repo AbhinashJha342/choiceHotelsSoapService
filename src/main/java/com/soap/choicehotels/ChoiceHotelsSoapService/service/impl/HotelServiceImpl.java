@@ -74,7 +74,7 @@ public class HotelServiceImpl implements HotelService {
         Hotel hotel = repository.getHotelByHotelIdAndDeletedIsFalse(deleteHotelRequest.getHotelId()).orElseThrow(()-> new NotFoundException("Invalid hotelId", "This hotel doesn't exist. Please check the hotelId. "+deleteHotelRequest.getHotelId()));
         hotel.setDeleted(true);
         repository.save(hotel);
-        amenitiesRepository.deleteById(hotel.getId());
+        amenitiesRepository.findAmenitiesByHotelId(hotel.getHotelId()).ifPresent(amenities -> amenitiesRepository.deleteById(amenities.getId()));
     }
 
     @Override
