@@ -23,7 +23,7 @@ import javax.persistence.*;
         }
 )
 @NamedNativeQuery(name = "hotelsByNameMapping", query = "select ht.hotel_id, ht.name, ht.rating, addr.exterior, addr.street, addr.city, addr.postal_code, \n" +
-        "addr.state, amen.amenities from hotel ht left outer join address addr on ht.address_id = addr.id and ht.deleted is false\n" +
+        "addr.state, amen.amenities from hotel ht inner join address addr on ht.address_id = addr.id and ht.deleted is false\n" +
         "left outer join amenities amen on ht.hotel_id = amen.hotel_id where ht.name ilike concat('%', :name, '%')", resultClass = HotelDetailsByName.class,
         resultSetMapping = "hotelsByNameMapping")
 
