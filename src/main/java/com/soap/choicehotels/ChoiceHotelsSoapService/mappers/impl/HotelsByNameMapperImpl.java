@@ -3,11 +3,9 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Address;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsByName;
-import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenities;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.Mapper;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.GetHotelByNameResponse;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.GetHotelDetailsResponse;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.HotelsByNameResponse;
+import org.choicehotel.generated.GetHotelByNameResponse;
+import org.choicehotel.generated.HotelsByNameResponse;
 
 import java.util.Arrays;
 import java.util.List;

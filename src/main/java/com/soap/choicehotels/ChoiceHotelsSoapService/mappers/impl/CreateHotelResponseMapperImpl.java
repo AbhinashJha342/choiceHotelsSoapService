@@ -2,7 +2,7 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.Mapper;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.CreateHotelResponse;
+import org.choicehotel.generated.CreateHotelResponse;
 
 public class CreateHotelResponseMapperImpl implements Mapper<Hotel, CreateHotelResponse> {
     @Override

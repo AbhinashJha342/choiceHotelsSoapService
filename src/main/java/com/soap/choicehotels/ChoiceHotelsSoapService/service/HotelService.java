@@ -3,9 +3,8 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.service;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.CustomDbDataUpdatedException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.NotFoundException;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
+import org.choicehotel.generated.*;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface HotelService {

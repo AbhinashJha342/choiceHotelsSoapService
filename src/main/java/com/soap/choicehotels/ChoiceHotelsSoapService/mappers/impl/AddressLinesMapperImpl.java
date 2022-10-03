@@ -2,7 +2,7 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.Mapper;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.AddressLinesDto;
+import org.choicehotel.generated.AddressLinesDto;
 
 public class AddressLinesMapperImpl implements Mapper<AddressLinesDto, AddressLines> {
 

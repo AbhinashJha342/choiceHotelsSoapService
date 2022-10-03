@@ -2,7 +2,7 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Amenities;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.Mapper;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.CreateHotelAmenitiesRequest;
+import org.choicehotel.generated.CreateHotelAmenitiesRequest;
 
 public class AmenitiesMapperImpl implements Mapper<CreateHotelAmenitiesRequest, Amenities> {
 

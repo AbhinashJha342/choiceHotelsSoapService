@@ -2,7 +2,7 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Hotel;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.Mapper;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.UpdateHotelResponse;
+import org.choicehotel.generated.UpdateHotelResponse;
 
 public class UpdatedHotelResponseMapperImpl implements Mapper<Hotel, UpdateHotelResponse> {
 

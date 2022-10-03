@@ -4,7 +4,7 @@ import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Address;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.AddressLines;
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.HotelDetailsWithAmenitiesByHotelId;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.Mapper;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.GetHotelDetailsResponse;
+import org.choicehotel.generated.GetHotelDetailsResponse;
 
 import java.util.Arrays;
 import java.util.List;

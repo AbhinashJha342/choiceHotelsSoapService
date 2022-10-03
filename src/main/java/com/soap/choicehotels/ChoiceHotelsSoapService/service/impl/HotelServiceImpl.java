@@ -4,10 +4,10 @@ import com.soap.choicehotels.ChoiceHotelsSoapService.domain.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.CustomDbDataUpdatedException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.NotFoundException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl.*;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.repository.AmenitiesRepository;
 import com.soap.choicehotels.ChoiceHotelsSoapService.repository.HotelRepository;
 import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
+import org.choicehotel.generated.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

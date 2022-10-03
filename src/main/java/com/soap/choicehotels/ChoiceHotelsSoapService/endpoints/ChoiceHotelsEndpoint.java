@@ -2,8 +2,8 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.endpoints;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.CustomDbDataUpdatedException;
 import com.soap.choicehotels.ChoiceHotelsSoapService.exception.NotFoundException;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.*;
 import com.soap.choicehotels.ChoiceHotelsSoapService.service.HotelService;
+import org.choicehotel.generated.*;
 import org.springframework.util.ObjectUtils;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

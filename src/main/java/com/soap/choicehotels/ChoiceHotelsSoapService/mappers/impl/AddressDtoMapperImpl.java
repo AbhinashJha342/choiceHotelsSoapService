@@ -2,7 +2,7 @@ package com.soap.choicehotels.ChoiceHotelsSoapService.mappers.impl;
 
 import com.soap.choicehotels.ChoiceHotelsSoapService.domain.Address;
 import com.soap.choicehotels.ChoiceHotelsSoapService.mappers.Mapper;
-import com.soap.choicehotels.ChoiceHotelsSoapService.model.AddressDto;
+import org.choicehotel.generated.AddressDto;
 
 public class AddressDtoMapperImpl implements Mapper<Address, AddressDto> {
 
